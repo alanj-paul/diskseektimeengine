@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SEEKTIME ENGINE</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<header>
+    <h1>DiskPulse</h1>
+    <p>Disk Scheduling Visualization System</p>
+</header>
+
+<section class="control-panel">
+    <div class="control-box">
+        <label>Algorithm</label>
+        <select id="algorithm">
+            <option>FCFS</option>
+            <option>SSTF</option>
+            <option>SCAN</option>
+            <option>C-SCAN</option>
+            <option>LOOK</option>
+            <option>C-LOOK</option>
+        </select>
+    </div>
+
+    <div class="control-box">
+        <label>Max Track</label>
+        <input type="number" id="maxTrack" value="199">
+    </div>
+
+    <div class="control-box">
+        <label>Head Position</label>
+        <input type="number" id="head">
+    </div>
+
+    <div class="control-box">
+        <label>Request Count</label>
+        <input type="number" id="count" min="1">
+    </div>
+
+    <div class="control-box">
+        <label>Direction</label>
+        <select id="direction">
+            <option>Right</option>
+            <option>Left</option>
+        </select>
+    </div>
+
+    <div class="control-box">
+        <label>Speed</label>
+        <input type="range" id="speed" min="100" max="1000" value="400">
+    </div>
+
+    <button class="generate-btn" onclick="generateInputs()">Generate Requests</button>
+
+</section>
+
+<section id="request-boxes"></section>
+
+<section class="actions">
+    <button onclick="runSingle()">Run Simulation</button>
+    <button onclick="runCompare()">Compare All</button>
+    <button onclick="resetApp()">Reset</button>
+</section>
+
+<section class="dashboard">
+    <div class="card">
+        <h3>Seek Time</h3>
+        <p id="totalSeek">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Average Seek Time</h3>
+        <p id="avgSeek">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Movements</h3>
+        <p id="steps">0</p>
+    </div>
+
+    <div class="card best-card">
+        <h3>Best Algorithm</h3>
+        <p id="bestAlgo">--</p>
+    </div>
+</section>
+
+<section class="flow-indicator">
+    <p id="flowText">Waiting for simulation...</p>
+</section>
+
+<section class="graph-section">
+    <canvas id="chart"></canvas>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
